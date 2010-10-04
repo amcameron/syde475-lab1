@@ -1,0 +1,9 @@
+# ignore Vim files
+*~
+*.swp
+
+# ignore LaTeX output
+*.dvi
+*.pdf
+*.aux
+*.log
