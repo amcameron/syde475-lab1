@@ -30,3 +30,7 @@ lena_phs = abs(ifft2(Flena_phs));
 figure; imshow(lena);
 figure; imshow(lena_mag);
 figure; imshow(lena_phs);
+
+% Pause before terminating.
+disp("Press any key to exit.");
+pause
