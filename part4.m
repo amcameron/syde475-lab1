@@ -17,18 +17,24 @@ lena_conv_h2 = conv2(lena_img, h2);
 lena_conv_h3 = conv2(lena_img, h3);
 
 figure; imshow(lena_img); title('Lena');
+imwrite(lena_img, 'files/lena_orig.png');
 figure; imshow(lena_conv_h1); title('Lena convolved with a horizontal 6x1/6 box');
+imwrite(lena_conv_h1, 'files/lena_conv_h1.png');
 figure; imshow(lena_conv_h2); title('Lena convolved with a vertical 6x1/6 box');
+imwrite(lena_conv_h2, 'files/lena_conv_h2.png');
 figure; imshow(lena_conv_h3); title('Lena convolved with [-1 1]');
+imwrite(lena_conv_h3, 'files/lena_conv_h3.png');
 
 % observing that convolution with h3 puts the image in the range [-1, 1], take
 % the absolute value to put all values back into the range [0, 1]
 lena_conv_h3_abs = abs(lena_conv_h3);
+imwrite(lena_conv_h3_abs, 'files/lena_conv_h3_abs.png');
 figure; imshow(lena_conv_h3_abs); title('Lena convolved with [-1 1], absolute value');
 
 % observing that convolution with h3 puts the image in the range [-1, 1], scale
 % and translate the values back into the range [0, 1]
 lena_conv_h3_moved = lena_conv_h3 ./ 2 .+ .5;
+imwrite(lena_conv_h3_moved, 'files/lena_conv_h3_shifted.png');
 figure; imshow(lena_conv_h3_moved); title('Lena convolved with [-1 1], moved into range [0, 1]');
 
 % Pause before terminating.
