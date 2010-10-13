@@ -45,5 +45,5 @@ psnr_c_bicub = PSNR(cman, c_bicub)
 
 % pause to allow direct execution without having images disappear
 % because the interpreter closes too soon
-disp("Press any key to terminate.");
+disp('Press any key to terminate.');
 pause

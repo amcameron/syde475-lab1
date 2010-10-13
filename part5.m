@@ -32,5 +32,5 @@ figure; imshow(log(lena_mag), []);
 figure; imshow(log(lena_phs), []);
 
 % Pause before terminating.
-disp("Press any key to exit.");
+disp('Press any key to exit.');
 pause

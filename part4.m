@@ -33,5 +33,5 @@ lena_conv_h3_abs = abs(lena_conv_h3);
 figure; imshow(lena_conv_h3_abs); title('Lena convolved with [-1 1], absolute value');
 
 % Pause before terminating.
-disp("Press any key to exit.");
+disp('Press any key to exit.');
 pause
