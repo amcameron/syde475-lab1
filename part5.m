@@ -25,11 +25,11 @@ Flena_phs = angle(Flena);
 
 % Perform inverse Fourier transforms on the magnitude and phase separately.
 % TODO: why are these abs() calls necessary?
-lena_mag = abs(ifft2(Flena_mag));
-lena_phs = abs(ifft2(Flena_phs));
+lena_mag = ifft2(Flena_mag);
+lena_phs = ifft2(Flena_phs);
 figure; imshow(lena);
-figure; imshow(lena_mag);
-figure; imshow(lena_phs);
+figure; imshow(log(lena_mag), []);
+figure; imshow(log(lena_phs), []);
 
 % Pause before terminating.
 disp("Press any key to exit.");
