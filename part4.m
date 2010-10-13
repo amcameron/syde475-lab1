@@ -4,7 +4,6 @@ close all;
 
 lena_img = imread('lena.tif');
 lena_img = rgb2gray(lena_img);
-max(max(lena_img))
 % normalize lena_img to be in the range [0, 1]
 lena_img = double(lena_img)/255;
 
