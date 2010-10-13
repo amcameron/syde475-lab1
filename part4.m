@@ -21,15 +21,15 @@ figure; imshow(lena_conv_h1); title('Lena convolved with a horizontal 6x1/6 box'
 figure; imshow(lena_conv_h2); title('Lena convolved with a vertical 6x1/6 box');
 figure; imshow(lena_conv_h3); title('Lena convolved with [-1 1]');
 
-% observing that convolution with h3 puts the image in the range [-1, 1], scale
-% and translate the values back into the range [0, 1]
-lena_conv_h3_moved = lena_conv_h3 ./ 2 .+ .5;
-figure; imshow(lena_conv_h3_moved); title('Lena convolved with [-1 1], moved into range [0, 1]');
-
 % observing that convolution with h3 puts the image in the range [-1, 1], take
 % the absolute value to put all values back into the range [0, 1]
 lena_conv_h3_abs = abs(lena_conv_h3);
 figure; imshow(lena_conv_h3_abs); title('Lena convolved with [-1 1], absolute value');
+
+% observing that convolution with h3 puts the image in the range [-1, 1], scale
+% and translate the values back into the range [0, 1]
+lena_conv_h3_moved = lena_conv_h3 ./ 2 .+ .5;
+figure; imshow(lena_conv_h3_moved); title('Lena convolved with [-1 1], moved into range [0, 1]');
 
 % Pause before terminating.
 disp('Press any key to exit.');
