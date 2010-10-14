@@ -28,14 +28,22 @@ tellus et hendrerit porttitor, magna ante congue justo, vulputate mollis
 quam purus vitae felis. In hac habitasse platea dictumst.
 
 \section*{Digital Zooming}
-Curabitur vestibulum faucibus libero, ut auctor mi porttitor ut. Curabitur
-sed dignissim leo. Duis sed accumsan purus. Vestibulum gravida lobortis
-varius. Proin ornare ipsum at felis imperdiet congue fermentum lorem
-tempus. Suspendisse potenti. Nullam rutrum congue quam, sit amet interdum
-lectus adipiscing vitae. Nulla facilisi. Sed nulla neque, sagittis
-vestibulum aliquam at, rutrum eget libero. Etiam est magna, scelerisque
-ac accumsan ullamcorper, dignissim auctor erat. In et pellentesque erat.
-Duis accumsan commodo nunc, non scelerisque massa posuere eu.
+% TODO: make this an ordered list
+% 1.
+%All of the up-sampled images were clearly inferior to the original, although
+%some were better than others.  Nearest neighbour is clearly the worst;
+%the resulting image is very blocky and appears identical to the down-sampled
+%image.  Bilinear interpolation is much better, although quite blurry compared
+%to the original, whereas bicubic interpolation, although still blurry compared
+%with the original, has clearer features than bilinear.
+
+% 2. How do the different methods compare to each other in terms of PSNR as well as visual quality?  Why?
+
+% 3. What parts of the image seems to work well using these digital zooming methods? What parts of the image doesn’t? Why?
+
+% 4. Compare the zooming results between Lena and Cameraman. Which image results in higher PSNR?  Which image looks better when restored to the original resolution using digital zooming methods?  Why?
+
+% 5. What does the PSNR tell you about each of the methods? Does it reflect what is observed visually?
 
 \section*{Discrete Convolution for Image Processing}
 Fusce at hendrerit est. Duis vel sem eget est vehicula facilisis. Sed
@@ -53,19 +61,19 @@ massa eu blandit convallis, lorem orci iaculis neque, vel elementum est
 augue sit amet massa.
 
 \section*{Fourier Analysis}
-Nulla eu tellus felis, nec egestas mauris. Sed fringilla, neque eu
-imperdiet porta, lacus sem imperdiet augue, vitae malesuada massa sapien
-ut mi. Aliquam porta metus in elit dictum congue. Vestibulum posuere
-suscipit metus, ac faucibus urna tincidunt sit amet. Sed posuere sodales
-tristique. Morbi a laoreet justo. Phasellus velit erat, aliquet et
-vehicula sit amet, feugiat eu mi. Vivamus mattis congue mi, tempor
-tristique nulla consectetur id. Aliquam sollicitudin leo non purus
-porttitor quis commodo mauris aliquet. Nam interdum dolor nec nisl
-ultricies ut consectetur diam blandit. Nunc pretium tortor eu elit
-sollicitudin a varius leo fermentum. Integer ultrices mauris in risus
-lacinia iaculis. Aliquam erat volutpat. Vestibulum non neque libero, in
-condimentum nunc. In nisi magna, bibendum at suscipit eleifend, semper a
-erat. Nullam rutrum tincidunt varius.
+% TODO: make this an ordered list
+% 1. What can you say about the general distribution of energy in the Fourier spectra? Why?
+
+% 2. What characteristics about the test image can you infer from the Fourier spectra?
+
+% 3. How did the Fourier spectra change from the original image (before rotation)?
+
+% 4. What conclusions and observations can be made about image characteristics based on the Fourier spectra of both original image and the rotated image?
+
+% 5. Describe how the reconstructed image from the amplitude component look like? What image characteristics does the amplitude component capture?
+
+% 6. Describe how the reconstructed image from the phase component look like? What image characteristics does the phase component capture?
+
 
 \section*{Point Operations for Image Enhancement}
 In imperdiet ultrices congue. Nam ac mauris nec lectus vestibulum faucibus
