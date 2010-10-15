@@ -38,6 +38,36 @@ quam purus vitae felis. In hac habitasse platea dictumst.
 %with the original, has clearer features than bilinear.
 
 % 2. How do the different methods compare to each other in terms of PSNR as well as visual quality?  Why?
+\begin{table}
+	\centering
+	\begin{tabular}{| l | r | r |}
+		\hline
+		\multicolumn{3}{|c|}{PSNR (dB)} \\ \hline
+		& Lena & Cameraman \\ \hline
+		Nearest Neighbour & 32.752 & 31.314 \\ \hline
+		Bilinear Interpolation & 32.746 & 30.978 \\ \hline
+		Bicubic Interpolation & 33.156 & 31.271 \\
+		\hline
+	\end{tabular}
+	\caption{Peak signal-to-noise for Lena and Cameraman}
+	\label{tab:psnr}
+\end{table}
+%%%% simple table - PSNR (dB)
+%%%% column 1: Lena
+% Nearest Neighbour: 32.752
+% Bilinear Interpolation: 32.746
+% Bicubic Interpolation: 33.156
+%%%% column 2: cameraman
+% Nearest Neighbour: 31.314
+% Bilinear Interpolation: 30.978
+% Bicubic Interpolation: 31.271
+2. None of the up-sampled images are as good as the original images.  Nearest
+neighbour upsampling produces blocky images, whereas bilinear and
+bicubic interpolation both produce slightly better images, although both are
+blurred.  Bicubic interpolation appears slightly less blurred than bilinear.
+The PSNR values, as shown in Table \ref{tab:psnr}, are quite close for all
+three methods; no algorithm comes out a clear winner, because all three
+behave similarly: they upsample by using information from nearby pixels.
 
 % 3. What parts of the image seems to work well using these digital zooming methods? What parts of the image doesn’t? Why?
 
