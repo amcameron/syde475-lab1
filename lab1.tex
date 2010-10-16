@@ -1,7 +1,9 @@
 \documentclass{sydeStyle}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{subfig}
 \DeclareGraphicsExtensions{.png}
+\graphicspath{{./files/}}
 
 \coursecode{352}
 \prof{Alexander Wong}
@@ -75,19 +77,50 @@ behave similarly: they upsample by using information from nearby pixels.
 % 5. What does the PSNR tell you about each of the methods? Does it reflect what is observed visually?
 
 \section*{Discrete Convolution for Image Processing}
-Fusce at hendrerit est. Duis vel sem eget est vehicula facilisis. Sed
-mattis laoreet nulla non suscipit. Mauris dui neque, sollicitudin vel
-pharetra eget, rhoncus id justo. Suspendisse volutpat nisi eget sapien
-mattis bibendum non ultricies libero. Maecenas bibendum cursus consequat.
-Ut aliquet tortor ut lacus blandit auctor. Donec scelerisque, libero eu
-eleifend mollis, tellus urna cursus enim, sit amet pretium dui libero vel
-enim. Ut ultrices feugiat mi id interdum. Ut eu justo a sem varius
-dignissim nec sit amet est. In a eros dolor, vel condimentum ante. Lorem
-ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare tempor
-blandit. Maecenas a nisi ac velit feugiat laoreet. Fusce felis nibh,
-accumsan faucibus consectetur et, rhoncus vel orci. Pellentesque dapibus,
-massa eu blandit convallis, lorem orci iaculis neque, vel elementum est
-augue sit amet massa.
+ \begin{figure}
+	\begin{center}
+		\subfloat[Lena]{\label{fig:lena_orig}\includegraphics[width=0.2\textwidth]{lena_orig.png}}
+		\subfloat[Lena$*h1$]{\label{fig:lena_conv_h1}\includegraphics[height=0.2\textwidth]{lena_conv_h1.png}}
+		\subfloat[Lena$*h2$]{\label{fig:lena_conv_h2}\includegraphics[width=0.2\textwidth]{lena_conv_h2.png}}
+		\subfloat[Lena$*h3$]{\label{fig:lena_conv_h3}\includegraphics[height=0.2\textwidth]{lena_conv_h3.png}}
+		\subfloat[absolute value of Lena$*h3$]{\label{fig:lena_conv_h3_abs}\includegraphics[height=0.2\textwidth]{lena_conv_h3_abs.png}}
+	\end{center}
+	\caption{Lena, convoluted with various impulse functions}
+	\label{SummingAmp2}
+\end{figure}
+In order to experiment with convolution in the context of image processing,
+three impulse functions, $h1$, $h2$, and $h3$ were convolved with the standard
+Lena test image:
+\begin{align*}
+	h1 & = \begin{bmatrix}\frac{1}{6} & \frac{1}{6} & \frac{1}{6} & \frac{1}{6}
+		& \frac{1}{6} & \frac{1}{6}\end{bmatrix} \\
+	h2 & = \begin{bmatrix}\frac{1}{6} & \frac{1}{6} & \frac{1}{6} & \frac{1}{6}
+		& \frac{1}{6} & \frac{1}{6}\end{bmatrix}^T \\
+	h3 & = \begin{bmatrix}-1 & 1\end{bmatrix}
+\end{align*}
+Because $h1$ is a horizontal vector, performing a 2D convolution with it should
+incorporate information into each pixel from horizontal neighbours of that pixel,
+resulting in a horizontal blur effect; figure \ref{fig:lena_conv_h1} confirms this.
+The second impulse function, shown convoluted with Lena in figure
+\ref{fig:lena_conv_h2}, is a transposed version of the first.  As such, it would
+be expected that it would result in a vertical blurring effect, which it does.
+The third impulse function results in a much different effect.
+It is also 1 dimensional, acting in the horizontal direction, but it simply
+subtracts the right neighbouring pixel from each pixel.
+Thus, the brightness of each pixel is proportional to the difference between it
+and its right neighbour.
+This results in a crude edge magnifying transformation, which can be seen in
+figure \ref{fig:lena_conv_h3}.
+However, observe that if the input image range is $[0,1]$, the output image will
+be $[-1,1]$.
+As such, some of the output is negative, and by default, this gets saturated to
+black when the output is displayed.
+If each pixel in the output image is converted to its absolute value, the result
+in figure \ref{fig:lena_conv_h3_abs} is obtained.
+Given these results, it is clear that convolution can be a convenient way to
+express operations that linearly transform pixels using information from their
+neighbours.
+Such operations are widely applicable to image processing.
 
 \section*{Fourier Analysis}
 % TODO: make this an ordered list
@@ -114,15 +147,9 @@ ante a justo mattis elementum. Aenean sollicitudin dignissim nibh, vitae
 ultricies quam dictum et.
 
 \section*{Conclusions}
-Vivamus semper ipsum id nibh aliquam eu tincidunt tortor scelerisque. Class
-aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-himenaeos. Praesent ultricies lobortis purus ut porttitor. Nulla non eros
-lorem, non pulvinar nisl. Lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Sed felis libero, hendrerit quis vulputate vitae, pulvinar
-eu libero. Nulla facilisi. Proin facilisis justo in velit dictum placerat.
-Curabitur mauris neque, vehicula quis dictum sed, sodales in diam. Cras
-sodales sem at diam ultrices at sodales mi dapibus. Suspendisse quis neque
-sit amet quam dapibus ornare at et dolor.
+Convolution of an image was demonstrated with 3 different impulse functions,
+illustrating that convolution can have very distinct effects depending on the
+chosen impulse function.
 
 \section*{Appendix A: Source Code}
 Ut placerat dolor vel lectus consectetur scelerisque. Maecenas facilisis
