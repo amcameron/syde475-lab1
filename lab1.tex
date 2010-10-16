@@ -243,9 +243,24 @@ darker pixels in the image, which makes the output image look unrealistically
 bright.
 
 \section*{Conclusions}
+Three methods of digital zooming were performed.  Although it achieves good
+PSNR, the nearest neighbour algorithm produces very blocky images.  It was
+observed that bicubic interpolation produces better fine detail than
+nearest neighbour, and that PSNR alone is insufficient for determining image
+quality.
+
 Convolution of an image was demonstrated with 3 different impulse functions,
 illustrating that convolution can have very distinct effects depending on the
 chosen impulse function.
+
+The Fourier decomposition of an image can be useful for detecting patterns
+in an image, such as the direction of principal frequency components.
+By changing the direction of the frequency components by rotating the image,
+a corresponding change was observed in Fourier space.
+By reconstructing an image from only the magnitude or only the phase of its
+Fourier transform, it was observed that the brightness information is contained
+in the magnitude component of the transform, while the structural information
+is contained in the phase.
 
 Various methods for improving contrast were performed and compared, using a
 low-contrast image containing mostly dark pixels.
