@@ -12,9 +12,9 @@ h1 = (1/6)*ones(1,6);
 h2 = h1';
 h3 = [-1 1];
 
-lena_conv_h1 = conv2(lena_img, h1);
-lena_conv_h2 = conv2(lena_img, h2);
-lena_conv_h3 = conv2(lena_img, h3);
+lena_conv_h1 = conv2(lena_img, h1, 'valid');
+lena_conv_h2 = conv2(lena_img, h2, 'same');
+lena_conv_h3 = conv2(lena_img, h3, 'valid');
 
 figure; imshow(lena_img); title('Lena');
 imwrite(lena_img, 'files/lena_orig.png');
