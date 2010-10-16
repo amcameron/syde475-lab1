@@ -2,6 +2,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{subfig}
+\usepackage{listings}
 \DeclareGraphicsExtensions{.png}
 \graphicspath{{./files/}}
 
@@ -152,15 +153,20 @@ illustrating that convolution can have very distinct effects depending on the
 chosen impulse function.
 
 \section*{Appendix A: Source Code}
-Ut placerat dolor vel lectus consectetur scelerisque. Maecenas facilisis
-metus eget velit imperdiet dignissim. In porttitor hendrerit urna, eget
-fermentum risus ornare sit amet. Nunc ullamcorper diam volutpat mauris
-molestie tempus vitae tincidunt enim. Donec quis rhoncus arcu. Suspendisse
-magna diam, euismod vel ultricies nec, ornare a metus. Class aptent taciti
-sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In
-hac habitasse platea dictumst. Suspendisse pretium auctor turpis, lobortis
-condimentum enim bibendum a. Donec libero ligula, tempor eu gravida eget,
-vehicula vitae nisi. Class aptent taciti sociosqu ad litora torquent per
-conubia nostra, per inceptos himenaeos.
+\lstset{
+	language=Octave,
+	% code font size
+	basicstyle=\scriptsize,
+	tabsize=2,
+	breaklines=true,
+	breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+	% show filename as title
+	title=\lstname,
+}
+
+\lstinputlisting{part3.m}
+\lstinputlisting{part4.m}
+\lstinputlisting{part5.m}
+\lstinputlisting{part6.m}
 
 \end{document}
