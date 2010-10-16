@@ -143,18 +143,114 @@ Such operations are widely applicable to image processing.
 
 
 \section*{Point Operations for Image Enhancement}
-In imperdiet ultrices congue. Nam ac mauris nec lectus vestibulum faucibus
-porta dictum metus. Ut sem purus, tincidunt in scelerisque at, blandit non
-nunc. Donec quis felis quam. Nulla facilisis gravida mattis. Phasellus non
-augue lectus, eget venenatis justo. Aenean in nisl purus. Quisque nec felis
-erat. Nunc vel nibh eget lectus blandit posuere non at augue. Donec sed
-ante a justo mattis elementum. Aenean sollicitudin dignissim nibh, vitae
-ultricies quam dictum et.
+Various pixel operations can be used to enhance the contrast of an image.
+To study this, a low contrast image of a tire was subjected to various per-pixel
+operations.
+In order to evaluate the effects of these operations, histograms for each output
+image are compared with the original image.
+Histograms are a plot of how many pixels have a given intensity value, with
+intensity on the x-axis and number of pixels on the y-axis.
+This is useful in evaluating contrast enhancement of various operations because
+it provides a visual representation of the global contrast of an image.
+ \begin{figure}
+	\begin{center}
+		\subfloat[Image]    {\includegraphics[height=0.42\textwidth]{tire_orig.png}}
+		\subfloat[Histogram]{\includegraphics[height=0.42\textwidth]{tire_orig_hist.pdf}}
+	\end{center}
+	\caption{Tire image}
+\end{figure}
+
+The histogram for the original image shows that most of the pixels in the image
+are concentrated in the low intensities, which results in low contrast, with
+most of the image looking dark.
+
+ \begin{figure}
+	\begin{center}
+		\subfloat[Image]    {\includegraphics[height=0.42\textwidth]{tire_negative.png}}
+		\subfloat[Histogram]{\includegraphics[height=0.42\textwidth]{tire_negative_hist.pdf}}
+	\end{center}
+	\caption{Tire image after negative transform}
+\end{figure}
+As a first test, a negative transform is applied to the image.
+This causes all dark pixels to become bright, and bright pixels to become dark.
+Because most pixels in the input image were dark, the output image has mostly
+bright pixels.
+The histogram is flipped horizontally, and most pixels are within a small,
+bright range of intensities, resulting in no improvement in contrast.
+
+ \begin{figure}
+	\begin{center}
+		\subfloat[Image]    {\includegraphics[height=0.42\textwidth]{tire_gamma_13.png}}
+		\subfloat[Histogram]{\includegraphics[height=0.42\textwidth]{tire_gamma_13_hist.pdf}}
+	\end{center}
+	\caption{Tire image after power-law transformation with $\gamma=1.3$}
+\end{figure}
+Next, power-law transformations are tested, in which each pixel is transformed
+according to the equation:
+\begin{displaymath}
+	I_{out} = I_{in}^\gamma
+\end{displaymath}
+Two values for the gamma term $\gamma$ are tested, $1.3$ and $0.5$.
+Because the range of values being transformed is between zero and one, a gamma
+term that is less than one nonlinearly shifts the intensity distribution toward
+brighter values, while a gamma term above one shifts the distribution to darker
+values.
+Because the image already has a very dark intensity distribution, adjusting with
+a gamma term of 1.3 squashes the intensity distribution further, lowering
+contrast and making the image look darker, with features that are harder to
+distinguish in the low contrast.
+ \begin{figure}
+	\begin{center}
+		\subfloat[Image]    {\includegraphics[height=0.42\textwidth]{tire_gamma_05.png}}
+		\subfloat[Histogram]{\includegraphics[height=0.42\textwidth]{tire_gamma_05_hist.pdf}}
+	\end{center}
+	\caption{Tire image after power-law transformation with $\gamma=0.5$}
+\end{figure}
+Conversely a gamma term of 0.5 causes the intensity distribution to be brighter
+overall, and spreads out the intensities of the dark pixels in the image (i.e.
+most of them), thus improving contrast.
+The resulting image is much clearer, and features are easier to distinguish.
+Given the above points, the gamma term of 0.5 is a better choice for this image.
+If the intensity distribution was highest in the bright intensities, or if
+working with the negative transformed version of this image, the gamma term of
+1.3 would have been a better choice for improving contrast.
+
+ \begin{figure}
+	\begin{center}
+		\subfloat[Image]    {\includegraphics[height=0.42\textwidth]{tire_histeq_256.png}}
+		\subfloat[Histogram]{\includegraphics[height=0.42\textwidth]{tire_histeq_256_hist.pdf}}
+	\end{center}
+	\caption{Tire image after histogram equalization}
+\end{figure}
+Finally, histogram equalization is performed on the image.
+Although ideally, this equalization would produce a flat histogram, this is not
+possible with discrete intensity values, because all pixels with the same
+intensity are transformed equally.
+Thus, spikes corresponding to above-average intensities on the histogram are
+merely shifted along the x-axis.
+However, it is possible to map multiple input intensity values to the same
+output intensity, throwing out some information for the few pixels that are
+spread out in the bright part of the intensity distribution.
+Because most pixel intensities are densely distributed in the darker
+intensities, this transformation causes a big increase in brightness for the
+darker pixels in the image, which makes the output image look unrealistically
+bright.
 
 \section*{Conclusions}
 Convolution of an image was demonstrated with 3 different impulse functions,
 illustrating that convolution can have very distinct effects depending on the
 chosen impulse function.
+
+Various methods for improving contrast were performed and compared, using a
+low-contrast image containing mostly dark pixels.
+It was observed that a negative transform does nothing to improve the contrast,
+because it doesn't shift pixel intensities relative to each other.
+Power-law transformations can improve the contrast by non-linearly transforming
+the intensity distribution to spread out pixels that have a small range of
+intensities, so long as the exponent term is chosen so that the transformation occurs in
+the right direction.
+Histogram equalization automatically increases the contrast as much as possible,
+but this can come at the expense of a realistic appearance for the image.
 
 \section*{Appendix A: Source Code}
 \lstset{

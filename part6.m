@@ -31,19 +31,19 @@ title('Histogram of Tire (negative transform)');
 pause(1);
 
 tire_img_gamma_13 = tire_img .^ 1.3;
-imwrite(tire_img_gamma_13, 'files/tire_gamma_1.3.png');
+imwrite(tire_img_gamma_13, 'files/tire_gamma_13.png');
 figure; imshow(tire_img_gamma_13); title('Tire (Gamma correction of 1.3)');
 figure; imhist(tire_img_gamma_13);
-print('files/tire_gamma_1.3_hist.eps', '-depsc2');
+print('files/tire_gamma_13_hist.eps', '-depsc2');
 title('Histogram of Tire (Gamma correction of 1.3)');
 
 pause(1);
 
 tire_img_gamma_5 = tire_img .^ 0.5;
-imwrite(tire_img_gamma_5, 'files/tire_gamma_0.5.png');
+imwrite(tire_img_gamma_5, 'files/tire_gamma_05.png');
 figure; imshow(tire_img_gamma_5); title('Tire (Gamma correction of 0.5)');
 figure; imhist(tire_img_gamma_5);
-print('files/tire_gamma_0.5_hist.eps', '-depsc2');
+print('files/tire_gamma_05_hist.eps', '-depsc2');
 title('Histogram of Tire (Gamma correction of 0.5)');
 
 pause(1);
