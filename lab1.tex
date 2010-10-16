@@ -99,12 +99,15 @@ Lena test image:
 		& \frac{1}{6} & \frac{1}{6}\end{bmatrix}^T \\
 	h3 & = \begin{bmatrix}-1 & 1\end{bmatrix}
 \end{align*}
+
 Because $h1$ is a horizontal vector, performing a 2D convolution with it should
 incorporate information into each pixel from horizontal neighbours of that pixel,
 resulting in a horizontal blur effect; figure \ref{fig:lena_conv_h1} confirms this.
+
 The second impulse function, shown convoluted with Lena in figure
 \ref{fig:lena_conv_h2}, is a transposed version of the first.  As such, it would
 be expected that it would result in a vertical blurring effect, which it does.
+
 The third impulse function results in a much different effect.
 It is also 1 dimensional, acting in the horizontal direction, but it simply
 subtracts the right neighbouring pixel from each pixel.
@@ -118,6 +121,7 @@ As such, some of the output is negative, and by default, this gets saturated to
 black when the output is displayed.
 If each pixel in the output image is converted to its absolute value, the result
 in figure \ref{fig:lena_conv_h3_abs} is obtained.
+
 Given these results, it is clear that convolution can be a convenient way to
 express operations that linearly transform pixels using information from their
 neighbours.
