@@ -24,8 +24,7 @@ Image processing has a variety of applications, from automating complicated
 processes such as tumour detection, to more general tasks, such as image
 resizing, contrast enhancement, and image compression.
 This report experiments with several image transformations that are relevant to
-these areas, observing their effects and in some cases analyzing their
-effectiveness.
+these areas, observing their effects and analyzing their effectiveness.
 
 \section*{Digital Zooming}
 The digital zooming methods investigated here are nearest neighbour, bilinear interpolation, and bicubic interpolation.
@@ -36,7 +35,7 @@ The interpolation techniques, on the other hand, produced smoother images; by in
 They work better in regions of change, with bicubic interpolation working especially well in regions of fine detail.
 As a higher-order interpolation algorithm, it is to be expected that it produces less error than bilinear interpolation.
 
-The PSNR values for the different digital zooming algorithms' outputs are summarised in Table \ref{tab:psnr}.
+The PSNR values for the different digital zooming algorithms' outputs are summarized in Table \ref{tab:psnr}.
 Nearest neighbour, although producing a blocky output, performs well when it comes to PSNR.
 This makes sense, as during the reduction phase, interpolation was used to downsample the image.
 This means that an area of several pixels in the original image will be averaged to produce a single pixel in the downsampled image.
@@ -76,6 +75,17 @@ Furthermore, the \emph{rgbtogray} function performs some arbitrary tone mapping 
 % Bicubic Interpolation: 31.271
 
 \section*{Discrete Convolution for Image Processing}
+In order to experiment with convolution in the context of image processing,
+three impulse functions, $h1$, $h2$, and $h3$ were convolved with the standard
+Lena test image:
+\begin{align*}
+	h1 & = \begin{bmatrix}\frac{1}{6} & \frac{1}{6} & \frac{1}{6} & \frac{1}{6}
+		& \frac{1}{6} & \frac{1}{6}\end{bmatrix} \\
+	h2 & = \begin{bmatrix}\frac{1}{6} & \frac{1}{6} & \frac{1}{6} & \frac{1}{6}
+		& \frac{1}{6} & \frac{1}{6}\end{bmatrix}^T \\
+	h3 & = \begin{bmatrix}-1 & 1\end{bmatrix}
+\end{align*}
+
  \begin{figure}
 	\begin{center}
 		\subfloat[Lena]{\label{fig:lena_orig}\includegraphics[width=0.2\textwidth]{lena_orig.png}}
@@ -87,16 +97,6 @@ Furthermore, the \emph{rgbtogray} function performs some arbitrary tone mapping 
 	\caption{Lena, convoluted with various impulse functions}
 	\label{SummingAmp2}
 \end{figure}
-In order to experiment with convolution in the context of image processing,
-three impulse functions, $h1$, $h2$, and $h3$ were convolved with the standard
-Lena test image:
-\begin{align*}
-	h1 & = \begin{bmatrix}\frac{1}{6} & \frac{1}{6} & \frac{1}{6} & \frac{1}{6}
-		& \frac{1}{6} & \frac{1}{6}\end{bmatrix} \\
-	h2 & = \begin{bmatrix}\frac{1}{6} & \frac{1}{6} & \frac{1}{6} & \frac{1}{6}
-		& \frac{1}{6} & \frac{1}{6}\end{bmatrix}^T \\
-	h3 & = \begin{bmatrix}-1 & 1\end{bmatrix}
-\end{align*}
 
 Because $h1$ is a horizontal vector, performing a 2D convolution with it should
 incorporate information into each pixel from horizontal neighbours of that pixel,
@@ -213,7 +213,7 @@ distinguish in the low contrast.
 	\caption{Tire image after power-law transformation with $\gamma=0.5$}
 \end{figure}
 Conversely a gamma term of 0.5 causes the intensity distribution to be brighter
-overall, and spreads out the intensities of the dark pixels in the image (i.e.
+overall, and spreads out the intensities of the dark pixels in the image (i.e.\
 most of them), thus improving contrast.
 The resulting image is much clearer, and features are easier to distinguish.
 Given the above points, the gamma term of 0.5 is a better choice for this image.
