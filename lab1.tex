@@ -126,18 +126,26 @@ neighbours.
 Such operations are widely applicable to image processing.
 
 \section*{Fourier Analysis}
-% TODO: make this an ordered list
-% 1. What can you say about the general distribution of energy in the Fourier spectra? Why?
+From the analysis of a rectangular image and its Fourier transform, we observe several things.
+First, as a box function, the rectangle corresponds to a sinc function in Fourier space.
+Second, as evident from rotating, the primary frequency of the rectangle is perpendicular to its major axis.
+Since this is parallel with the direction of change, this is logical.
+Third, when the original image is rotated, the Fourier spectra is as well.
+Since the directions of the primary frequencies in the image change, it is reassuring that their representation in frequency space would change correspondingly.
 
-% 2. What characteristics about the test image can you infer from the Fourier spectra?
+\begin{figure}
+	\begin{center}
+		\includegraphics[height=0.3\textwidth]{lena_orig}
+	\end{center}
+	\caption{Lena}
+	\label{fig:lena}
+\end{figure}
 
-% 3. How did the Fourier spectra change from the original image (before rotation)?
-
-% 4. What conclusions and observations can be made about image characteristics based on the Fourier spectra of both original image and the rotated image?
-
-% 5. Describe how the reconstructed image from the amplitude component look like? What image characteristics does the amplitude component capture?
-
-% 6. Describe how the reconstructed image from the phase component look like? What image characteristics does the phase component capture?
+When reconstructing an image from its Fourier components, the magnitude and phase contribute different information about the image.
+By reconstructing the Lena image (shown in figure \ref{fig:lena}) from each half of its Fourier transform independently, we can see some characteristics of the transform.
+The magnitude component contributes to brightness.  While the image reconstructed from magnitude information (figure \ref{fig:lenamag}) appears shapeless, the brightness appears approximately correct for what we see in the original image.
+The phase information, on the other hand, has structure resembling certain edges in the original image (see figure \ref{fig:lenaphs}).  On the other hand, the brightness appears fairly random.
+It is clear that, while each component contributes differently to the appearance of the reconstructed image, neither is redundant.
 
 
 \section*{Point Operations for Image Enhancement}
