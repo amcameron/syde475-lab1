@@ -5,7 +5,6 @@
 close all;
 
 % open files in grayscale
-% TODO: acquire cameraman.tif and tire.tif
 lena = rgb2gray(imread('lena.tif'));
 cman = imread('cameraman.tif');
 
