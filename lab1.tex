@@ -28,16 +28,29 @@ these areas, observing their effects and in some cases analyzing their
 effectiveness.
 
 \section*{Digital Zooming}
-% TODO: make this an ordered list
-% 1.
-%All of the up-sampled images were clearly inferior to the original, although
-%some were better than others.  Nearest neighbour is clearly the worst;
-%the resulting image is very blocky and appears identical to the down-sampled
-%image.  Bilinear interpolation is much better, although quite blurry compared
-%to the original, whereas bicubic interpolation, although still blurry compared
-%with the original, has clearer features than bilinear.
+The digital zooming methods investigated here are nearest neighbour, bilinear interpolation, and bicubic interpolation.
+Nearest neighbour produces blocky images, which is to be expected, as it simply copies nearby values exactly.
+It works well in regions with very little change, because it assumes there is none.
+If that assumption is incorrect, nearest neighbour will introduce error.
+The interpolation techniques, on the other hand, produced smoother images; by interpolating unknown values, pixellated edges are replaced with smooth gradients.
+They work better in regions of change, with bicubic interpolation working especially well in regions of fine detail.
+As a higher-order interpolation algorithm, it is to be expected that it produces less error than bilinear interpolation.
 
-% 2. How do the different methods compare to each other in terms of PSNR as well as visual quality?  Why?
+The PSNR values for the different digital zooming algorithms' outputs are summarised in Table \ref{tab:psnr}.
+Nearest neighbour, although producing a blocky output, performs well when it comes to PSNR.
+This makes sense, as during the reduction phase, interpolation was used to downsample the image.
+This means that an area of several pixels in the original image will be averaged to produce a single pixel in the downsampled image.
+When this average is blown back up, then, it makes sense that it will have little error; it already contains information from the pixels it's supposed to imitate.
+Bilinear interpolation, on the other hand, incurs error for smoothing out sharp details.
+Anywhere there are sharp edges in the original will be blurred after bilinear resizing.
+Bicubic interpolation doesn't perform as poorly as bilinear because of the way it weights closer pixels higher in its reconstruction.
+Because of that, and because it uses farther pixels to incorporate the rate of change as well as the curvature, bicubic interpolation does a better job of estimating the lost pixels, and earns a higher PSNR for it.
+Clearly, although PSNR gives some measure of the algorithms' quality, it doesn't account for the entirety of the perceived image quality.
+
+Although the Lena image appears to be better after reconstruction than the Cameraman image, this could be attributed to a number of factors unrelated to the algorithms themselves.
+For instance, the former is four times the resolution of the latter, and there is simply more detail present.
+Furthermore, the \emph{rgbtogray} function performs some arbitrary tone mapping to convert from colour to grayscale, which may result in more information in Lena than Cameraman has to begin with.
+
 \begin{table}
 	\centering
 	\begin{tabular}{| l | r | r |}
@@ -61,19 +74,6 @@ effectiveness.
 % Nearest Neighbour: 31.314
 % Bilinear Interpolation: 30.978
 % Bicubic Interpolation: 31.271
-2. None of the up-sampled images are as good as the original images.  Nearest
-neighbour upsampling produces blocky images, whereas bilinear and
-bicubic interpolation both produce slightly better images, although both are
-blurred.  Bicubic interpolation appears slightly less blurred than bilinear.
-The PSNR values, as shown in Table \ref{tab:psnr}, are quite close for all
-three methods; no algorithm comes out a clear winner, because all three
-behave similarly: they upsample by using information from nearby pixels.
-
-% 3. What parts of the image seems to work well using these digital zooming methods? What parts of the image doesn’t? Why?
-
-% 4. Compare the zooming results between Lena and Cameraman. Which image results in higher PSNR?  Which image looks better when restored to the original resolution using digital zooming methods?  Why?
-
-% 5. What does the PSNR tell you about each of the methods? Does it reflect what is observed visually?
 
 \section*{Discrete Convolution for Image Processing}
  \begin{figure}
