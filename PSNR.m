@@ -1,7 +1,18 @@
 function result = PSNR(f, g)
-	assert(max(max(f)) <= 255);
-	result = 10*log10(255*255/MSE(f,g));
+	assert(min(min(f)) >= 0);
+
+	max_intensity = max(max(f));
+	% assumptions about the max intensity..
+	assert(max_intensity <= 255);
+	if (max_intensity <= 1)
+		max_intensity = 1;
+	else
+		max_intensity = 255;
+
+	result = 10*log10( (max_intensity^2) / MSE(f,g) );
+end
 
 function result = MSE(f, g)
 	assert(size(f)==size(g));
-	result = double(sum(sum( (f-g) .^ 2 ))) / ( rows(f)*columns(f) );
+	result = mean2( (f-g) .^ 2 );
+end
