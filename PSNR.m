@@ -8,6 +8,7 @@ function result = PSNR(f, g)
 		max_intensity = 1;
 	else
 		max_intensity = 255;
+	endif
 
 	result = 10*log10( (max_intensity^2) / MSE(f,g) );
 end
